@@ -55,7 +55,7 @@ const app = express();
 app.use(express.json());
 
 // Endpoints
-app.post("/order", (req, res) => {
+app.post("/order/:user_id", (req, res) => {
     const { order_id, user_id } = req.body;
     if (!user_id) return res.status(400).send("User ID is missing");
 
@@ -69,7 +69,7 @@ app.post("/order", (req, res) => {
     res.send({ message: "Spin awarded", spins: users[user_id].spins, order_id});
 });
 
-app.post("/spin", (req, res) => {
+app.post("/spin/:user_id", (req, res) => {
     const {user_id} = req.body;
     const user = users[user_id];
     if (!user) return res.status(404).send("User not found");
@@ -89,4 +89,4 @@ app.get("/history/:user_id", (req, res) => {
 
 // Server starter
 
-app.listen(8080, () => console.log("Server is running on http://localhost:8080"));s
+app.listen(8080, () => console.log("Server is running on http://localhost:8080"));

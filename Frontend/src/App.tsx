@@ -1,24 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [spins, setSpins] = useState<number>(0);
+  const [history, setHistory] = useState<string[]>([]);
+  const [result, setResult] = useState<string>("");
+
+  // fetch data from backend when page loads
+  
+  useEffect(() => {
+    fetch("http://localhost:8080/user/1")
+    .then(res => res.json())
+    .then(data => {
+      setSpins(data.spins);
+      setHistory(data.history || []);
+    });
+  }, []);
+
+  // Spin handler
+
+  const handleSpin = async () => {
+    const res = await fetch("http://localhost:8080/spin/1", { method: "POST",});
+    const data = await res.json();
+
+    setResult (`You won ${data.prize} Kr!`);
+    setSpins(data.spins);
+    setHistory(data.history);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Spin the Wheel!</h1>
+      <p>Spins left: {spins}</p>
+
+      <button onClick={handleSpin} disabled={spins <= 0}>Spin!</button>
+
+      {result && <h2>{result}</h2>}
+
+      <h3>History:</h3>
+      <ul>
+        {history.map((h, i) => (
+          <li key={i}>{h}</li>
+        ))}
+      </ul>
     </div>
   );
 }
