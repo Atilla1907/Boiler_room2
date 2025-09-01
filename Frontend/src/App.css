@@ -1,38 +1,84 @@
-.App {
+/* Full background gradient like Karambit Fade */
+.container {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 40px;
+  border-radius: 10px;
   color: white;
+  background: linear-gradient(135deg, #9b59b6, #e74c3c, #f1c40f, #9b59b6);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  font-family: 'Arial', sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+/* Smooth gradient animation */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Title */
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+}
+
+/* Spin button */
+.button-spin {
+  background-color: #32cd32;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button-spin:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #32cd32;
+}
+
+/* Simulate Order button */
+.button-order {
+  background-color: #1e90ff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button-order:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #1e90ff;
+}
+
+/* Result display */
+.result {
+  color: #ffeb3b;
+  font-size: 1.5rem;
+  margin: 20px 0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* History list */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }

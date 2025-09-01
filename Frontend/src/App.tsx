@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import './App.css';
 function App() {
   const [spins, setSpins] = useState<number>(0);
   const [history, setHistory] = useState<{ prize: number; date: string }[]>([]);
