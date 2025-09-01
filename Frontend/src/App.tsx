@@ -40,7 +40,7 @@ function App() {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div className="container">
       <h1>Spin the Wheel!</h1>
       <p>Spins left: {spins}</p>
 
